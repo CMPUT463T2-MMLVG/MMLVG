@@ -1,8 +1,6 @@
 import os
 import config
 
-
-
 def getRidMidNull(fileName,fileNum):
     F = open(fileName)
     FreeNullName = "Generated Levels/FreeNullFile%d.txt"%(fileNum)
@@ -126,7 +124,6 @@ def getRidFrontNull(fileName):
                 PreNullFile.write(line[r:])
                 break
     PreNullFile.close()
-    ######################################
     return "Generated Levels/noOuterNull.txt"
     
 
