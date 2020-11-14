@@ -1,0 +1,5 @@
+HHHHHHVVVVVVVVV
+
+Total number of rooms: 15
+Total number of vertical rooms: 9
+Total number of horizontal rooms: 6
