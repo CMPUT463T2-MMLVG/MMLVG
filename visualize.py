@@ -36,11 +36,16 @@ level = {}
 # file path
 with open("./TestFile.txt") as fp:
     y = 0
+    width = 0
     for line in fp:
         level[y] = line
         y += 1
+        line_width = len(line)
+        if line_width > width:
+            width = line_width
+    height = y
 
-image = Image.new("RGB", (3000, 3000), color=(81, 50, 8))
+image = Image.new("RGB", ((width-1)*16, height*16), color=(81, 50, 8))
 pixels = image.load()
 
 maxY = y
