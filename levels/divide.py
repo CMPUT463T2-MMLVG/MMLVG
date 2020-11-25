@@ -36,7 +36,7 @@ for l in range(1,11):
             f = open("newlevels/" + str(l) + "/V" + str(i) + "H" + str(j) + ".txt", "w")
             for m in range(ver_chunks[i][0], ver_chunks[i][1]):
                 f.write(level[m][hor_chunks[j][0]:hor_chunks[j][1]] + "\n")
-                if "@" in level[m][hor_chunks[j][0]:hor_chunks[j][1]]:
+                if "@" in level[m][hor_chunks[j][0]:hor_chunks[j][1]] or level[m][hor_chunks[j][0]:hor_chunks[j][1]] == "":
                     null_tiles.append(str(i) + "," + str(j))
 
     null_tiles = [[i, null_tiles.count(i)] for i in set(null_tiles)]
