@@ -5,17 +5,10 @@ with open("generated levels/layout.txt") as fp:
     for line in fp:
         layout_ls.append(line.replace("\n", ""))
 
-num = 12
+num = 5
 
 countH = layout_ls[num].count("H")
 countV = layout_ls[num].count("V")
-
-# if countV == 0:
-#     width = countH * 16
-# else:
-#     width = (countH + 1) * 16
-#
-# height = countV * 15
 
 layout = list(layout_ls[num])
 x = 1
@@ -39,7 +32,6 @@ for i in range(1, 16):
             y -= 1
             lowest_y = y
 
-    #if layout[i] == "H":
     else:
         x += 1
         width = x
@@ -80,6 +72,6 @@ for i in range(len(layout)):
         map[y1] = map[y1][:x1] + line.replace("\n", "") + map[y1][x2:]
         y1 += 1
 
-    fp = open("generated levels/result.txt", "w")
-    for i in range(len(map)):
-        fp.write(map[i] + "\n")
+fp = open("generated levels/result.txt", "w")
+for i in range(len(map)):
+    fp.write(map[i] + "\n")

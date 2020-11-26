@@ -34,7 +34,7 @@ visualization["*"] = "special_item"
 # Visualize Output Level
 level = {}
 # file path
-with open("./TestFile.txt") as fp:
+with open("generated levels/result.txt") as fp:
     y = 0
     width = 0
     for line in fp:
