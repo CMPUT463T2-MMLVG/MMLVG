@@ -51,4 +51,9 @@ for i in range(20):
 		sequence += thisRoom
 		firstRoom = thisRoom
 	result.append(sequence)
+
+f = open("generated levels/layout.txt", "w")
+for i in range(len(result)):
+	f.write(result[i]+"\n")
+
 print(result)
