@@ -29,17 +29,21 @@ for level in levels:
     for y in range(maxY, -1, -1):
         for x in range(0, len(level[y])):
             west = " "
+            southsouth = " "
             southwest = " "
             south = " "
 
             if x>0:
                 west = level[y][x-1]
-            if y<maxY:
+            if x>0 and y<maxY:
                 south = level[y+1][x-1]
             if x>0 and y<maxY:
                 southwest = level[y+1][x]
+            if y<maxY-1:
+                southsouth = level[y+2][x]
 
-            key = west+southwest+south
+            key = west+southwest+south+southsouth
+
             if not key in markovCounts.keys():
                 markovCounts[key] = {}
             if not level[y][x] in markovCounts[key].keys():
@@ -70,17 +74,19 @@ for i in range(20):
         level[y] =""
         for x in range(0, maxX):
             west = " "
-            southwest = " "
             south = " "
-
+            southsouth =" "
+            southwest = " "
             if x>0:
                 west = level[y][x-1]
-            if y<maxY:
+            if x>0 and y<maxY:
                 south = level[y+1][x-1]
+            if y<maxY-1:
+                southsouth = level[y+2][x]
             if x>0 and y<maxY:
                 southwest = level[y+1][x]
 
-            key = west+southwest+south
+            key = west+southwest+south+southsouth
             # print(key)
 
             if key in markovProbabilities.keys():
@@ -94,7 +100,7 @@ for i in range(20):
             else:
                 level[y] +="-"
 
-    f = open("./MegaMan_Processed_Levels/Level_with_null/generated/generated.txt", "a")
+    f = open("./MegaMan_Processed_Levels/Level_with_null/generated/generated-I3.txt", "a")
     for row in level:
         f.write(str(level[row])+'\n')
     f.write('\n')
