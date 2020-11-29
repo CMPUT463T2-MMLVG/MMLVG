@@ -55,7 +55,7 @@ for key in markovCounts.keys():
 
 for i in range(50):
 	room = {}
-	maxY = 15
+	maxY = 14
 	maxX = 16
 
 	for y in range(maxY, -1, -1):
@@ -85,6 +85,6 @@ for i in range(50):
 			else:
 				room[y] +="-"
 	s = "output" + str(i)
-	with open("./Generated Levels/Horizontal_rooms/{0}.txt".format(s), "a") as the_file:
+	with open("./Generated Levels/Horizontal_rooms/{0}.txt".format(s), "w") as the_file:
 		for y in range(0, maxY+1):
    			the_file.write(room[y]+"\n")
