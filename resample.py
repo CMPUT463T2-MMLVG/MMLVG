@@ -1,6 +1,6 @@
 import random
-# from trainH_1 import trainHorizontal
-from assembleHorizontal import trainHorizontal
+from trainH_1 import trainHorizontal
+# from assembleHorizontal import trainHorizontal
 from trainV_1 import trainVertical
 from utils import checkHH, checkVH, checkVV, checkHV
 
