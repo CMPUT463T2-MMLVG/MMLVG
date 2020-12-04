@@ -25,23 +25,20 @@ lowest_y = 1
 height = 1
 width = 1
 
-for i in range(1, 16):
-    if layout[i] == "V" and layout[i - 1] == "V":
-        if i == 1 or layout[i - 2] == "H":
-            # 0 means going down; 1 means going up
-            direction = random.randint(0, 1)
+for i in range(1, len(layout)):
+    if layout[i] == 'V' and (layout[i - 1] == 'H' or i == 1):
+        direction = random.randint(0, 1)
 
+    if layout[i] == 'V' and layout[i - 1] == 'V':
         if direction == 0:
             y += 1
             height = y
         else:
             y -= 1
             lowest_y = y
-
     else:
         x += 1
         width = x
-
     layout_axis.append([x, y])
 
 if lowest_y < 1:
@@ -66,18 +63,18 @@ while (i < len(layout)):
 
     if layout[i] == "V":
         room = trainVertical()
-        # if i > 0 and layout[i-1] == "H":
-        #     if not checkHV(last_room, room):
-        #         continue
-        # elif i>0 and layout[i-1] == "V":
-        #     # check direction
-        #     # if going up, direction = 1; if going down, direction=0
-        #     if layout_axis[i][1] > layout_axis[i-1][1]:
-        #         direction = 1
-        #     else:
-        #         direction = 0
-        #     if not checkVV(last_room, room, direction):
-        #         continue
+        if i > 0 and layout[i-1] == "H":
+            if not checkHV(last_room, room):
+                continue
+        elif i>0 and layout[i-1] == "V":
+            # check direction
+            # if going up, direction = 1; if going down, direction=0
+            if layout_axis[i][1] > layout_axis[i-1][1]:
+                direction = 1
+            else:
+                direction = 0
+            if not checkVV(last_room, room, direction):
+                continue
     else:
         room = trainHorizontal()
         # if i > 0 and layout[i-1] == "H":
