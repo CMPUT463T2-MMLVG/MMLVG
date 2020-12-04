@@ -39,12 +39,15 @@ def check_VV(roomV, roomPrev, direction):
         prevTiles = roomPrev[-1]
         prevEmpty = [pos for pos, char in enumerate(
             prevTiles) if char == '-' or char == '|']
+        # print(topEmpty, prevEmpty)
         return not set(topEmpty).isdisjoint(prevEmpty)
     else:
         prevTiles = roomPrev[0]
         prevEmpty = [pos for pos, char in enumerate(
             prevTiles) if char == '-' or char == '|']
+        # print(bottomEmpty, prevEmpty)
         return not set(bottomEmpty).isdisjoint(prevEmpty)
+
 
 def check_HV(roomV, roomPrev, direction):
     # 0 means going down; 1 means going up
@@ -69,11 +72,17 @@ def check_HV(roomV, roomPrev, direction):
         prevTiles += line[-1]
     prevEmpty = [pos for pos, char in enumerate(
         prevTiles) if pos < 13 and char == '-' or char == '|']
+    # print(leftEmpty, prevEmpty)
     return not set(leftEmpty).isdisjoint(prevEmpty)
 
 
 def check_VH(roomV, roomPrev, direction):
     # 0 means going down; 1 means going up
+    rightTiles = " "
+    for line in roomV:
+        rightTiles += line[-1]
+    rightEmpty = [pos for pos, char in enumerate(
+        rightTiles) if pos < 13 and char == '-' or char == '|']
     marginTiles = " "
     prevTiles = " "
     if not direction:
@@ -84,10 +93,25 @@ def check_VH(roomV, roomPrev, direction):
         prevTiles = roomPrev[-1]
         prevEmpty = [pos for pos, char in enumerate(
             prevTiles) if char == '-' or char == '|']
+    else:
+        marginTiles = roomV[-1]
+        marginEmpty = [pos for pos, char in enumerate(
+            marginTiles) if char == '-' or char == '|']
+        prevTiles = roomPrev[0]
+        prevEmpty = [pos for pos, char in enumerate(
+            prevTiles) if char == '-' or char == '|']
+    if not rightEmpty or not marginEmpty:
+        return False
+    return not set(marginEmpty).isdisjoint(prevEmpty)
 
 
-h = []
-with open("divideHorizontal/input/Horizontal/2.txt") as fp:
+room1 = []
+room2 = []
+with open("test_resample/v_b_r_good.txt") as fp:
     for line in fp:
-        h.append(line.replace("\n", ""))
-print(check_HH(h, h))
+        room1.append(line.replace("\n", ""))
+with open("test_resample/v_good.txt") as fp:
+    for line in fp:
+        room2.append(line.replace("\n", ""))
+
+print(check_HV(room2, room1, 0))

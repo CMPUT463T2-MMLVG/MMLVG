@@ -2,7 +2,7 @@ import random
 # from trainH_1 import trainHorizontal
 from assembleHorizontal import trainHorizontal
 from trainV_1 import trainVertical
-from utils import checkHH, checkVH, checkVV, checkHV
+from check_rooms import check_HH, check_VH, check_VV, check_HV
 
 layout_ls = []
 with open("Generated Levels/layout.txt") as fp:
@@ -56,6 +56,7 @@ map = [map] * height  # map with only null tiles
 
 last_room = 0
 i = 0
+resample = 0
 while (i < len(layout)):
     x1 = layout_axis[i][0] * 16 - 16
     x2 = layout_axis[i][0] * 16
@@ -64,35 +65,43 @@ while (i < len(layout)):
     if layout[i] == "V":
         room = trainVertical()
         if i > 0 and layout[i-1] == "H":
-            if not checkHV(last_room, room):
+            if layout_axis[i+1][1] > layout_axis[i][1]:
+                direction = 1
+            else:
+                direction = 0
+            if not check_HV(room, last_room, direction):
+                resample += 1
                 continue
-        elif i>0 and layout[i-1] == "V":
+        elif i > 0 and layout[i-1] == "V":
             # check direction
             # if going up, direction = 1; if going down, direction=0
             if layout_axis[i][1] > layout_axis[i-1][1]:
                 direction = 1
             else:
                 direction = 0
-            if not checkVV(last_room, room, direction):
-                continue
+            if layout[i+1] == "H":
+                if not check_VH(room, last_room, direction):
+                    resample += 1
+                    continue
+            else:
+                if not check_VV(room, last_room, direction):
+                    resample += 1
+                    continue
     else:
         room = trainHorizontal()
-        # if i > 0 and layout[i-1] == "H":
-        #     if not checkHH(last_room, room):
-        #         continue
-        # elif  i>0 and layout[i-1] == "V":
-        #     if not checkVH(last_room, room):
-        #         continue
+        if i > 0 and not check_HH(room, last_room):
+            resample += 1
+            continue
 
-    # print(y1, x1, x2)
-    # print(room)
     last_room = room
     for line in room:
         map[y1] = map[y1][:x1] + line.replace("\n", "") + map[y1][x2:]
         # print(map[y1])
         y1 += 1
-    # print(y1, x1, x2)
+    print("room number: "+str(i))
+    print("room type: " + layout[i], "resample times: "+str(resample))
     i += 1
+    resample = 0
 
     # i = len(layout)
 
