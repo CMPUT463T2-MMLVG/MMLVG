@@ -105,7 +105,7 @@ def check_VH(roomV, roomPrev, direction):
     return not set(marginEmpty).isdisjoint(prevEmpty)
 
 
-room1 = []
+""" room1 = []
 room2 = []
 with open("test_resample/v_b_r_good.txt") as fp:
     for line in fp:
@@ -114,4 +114,4 @@ with open("test_resample/v_good.txt") as fp:
     for line in fp:
         room2.append(line.replace("\n", ""))
 
-print(check_HV(room2, room1, 0))
+print(check_HV(room2, room1, 0)) """
