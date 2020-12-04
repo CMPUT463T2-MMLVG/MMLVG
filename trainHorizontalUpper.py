@@ -7,8 +7,8 @@ import random
 rooms = []  # list of dictionaries, each dictionary a room
 def trainHorizontalUpper():
     # Load Megaman horizontal rooms
-    for levelFile in glob.glob("/divideHorizontal/input/horizontal_upper/*.txt"):
-        print("Processing: " + levelFile)
+    for levelFile in glob.glob("divideHorizontal/input/horizontal_upper/*.txt"):
+        # print("Processing: " + levelFile)
         with open(levelFile) as fp:
             room = {}
             y = 0
