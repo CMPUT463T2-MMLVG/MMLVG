@@ -15,16 +15,15 @@ from trainHorizontalMiddle import trainHorizontalMiddle
 #         assembled.write(line)
 #     for line in lower:
 #         assembled.write(line)
-def trainHorizontal():
-    upper = trainHorizontalUpper()
-    lower = trainHorizontalLower()
-    middle = trainHorizontalMiddle()
-
-    room = []
-    for line in upper:
-        room.append(line)
-    for line in middle:
-        room.append(line)
-    for line in lower:
-        room.append(line)
-    return room
+upper = trainHorizontalUpper()
+lower = trainHorizontalLower()
+middle = trainHorizontalMiddle()
+print(upper, lower, middle)
+room = []
+for line in upper:
+    room.append(line)
+for line in middle:
+    room.append(line)
+for line in lower:
+    room.append(line)
+# return room
