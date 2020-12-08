@@ -1,6 +1,6 @@
 import random
-# from trainH_1 import trainHorizontal
-from assembleHorizontal import trainHorizontal
+from trainH_1 import trainHorizontal
+# from assembleHorizontal import trainHorizontal
 from trainV_1 import trainVertical
 from check_rooms import check_HH, check_VH, check_VV, check_HV
 
@@ -66,9 +66,9 @@ while (i < len(layout)):
         room = trainVertical()
         if i > 0 and layout[i-1] == "H":
             if layout_axis[i+1][1] > layout_axis[i][1]:
-                direction = 1
-            else:
                 direction = 0
+            else:
+                direction = 1
             if not check_HV(room, last_room, direction):
                 resample += 1
                 continue
@@ -76,9 +76,9 @@ while (i < len(layout)):
             # check direction
             # if going up, direction = 1; if going down, direction=0
             if layout_axis[i][1] > layout_axis[i-1][1]:
-                direction = 1
-            else:
                 direction = 0
+            else:
+                direction = 1
             if layout[i+1] == "H":
                 if not check_VH(room, last_room, direction):
                     resample += 1

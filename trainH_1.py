@@ -25,18 +25,33 @@ def trainHorizontal():
 		for y in range(maxY, -1, -1):
 			for x in range(0, 16):
 				#print("(%d, %d)"%(x,y))
+				# west = " "
+				# southwest = " "
+				# westwest = " "
+				# southwestwest = " "
+				# south = " "
+				#
+				# if x>0:
+				# 	west = room[y][x-1]
+				# if x>1:
+				# 	westwest = room[y][x-2]
+				# if y<maxY:
+				# 	south = room[y+1][x-1]
+				# if x>0 and y<maxY:
+				# 	southwest = room[y+1][x]
+				# if x>1 and y<maxY:
+				# 	southwestwest = room[y+1][x-2]
+				#
+				# key = west+south+southwest+southwestwest+westwest
 				west = " "
 				southwest = " "
-				south = " "
 
 				if x>0:
 					west = room[y][x-1]
-				if y<maxY:
-					south = room[y+1][x-1]
 				if x>0 and y<maxY:
 					southwest = room[y+1][x]
 
-				key = west+southwest+south
+				key = west+southwest
 
 				if not key in markovCounts.keys():
 					markovCounts[key] = {}
@@ -63,16 +78,14 @@ def trainHorizontal():
 		for x in range(0, maxX):
 			west = " "
 			southwest = " "
-			south = " "
 
 			if x>0:
 				west = room[y][x-1]
-			if y<maxY:
-				south = room[y+1][x-1]
 			if x>0 and y<maxY:
 				southwest = room[y+1][x]
 
-			key = west+southwest+south
+			key = west+southwest
+
 
 			if key in markovProbabilities.keys():
 				randomSample = random.uniform(0, 1)

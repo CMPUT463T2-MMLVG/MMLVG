@@ -26,16 +26,16 @@ def trainVertical():
                 # print("(%d, %d)"%(x,y))
                 west = " "
                 southwest = " "
-                south = " "
+                # south = " "
 
                 if x > 0:
                     west = room[y][x - 1]
-                if y < maxY:
-                    south = room[y + 1][x - 1]
+                # if y < maxY:
+                #     south = room[y + 1][x - 1]
                 if x > 0 and y < maxY:
                     southwest = room[y + 1][x]
 
-                key = west + southwest + south
+                key = west + southwest
 
                 if not key in markovCounts.keys():
                     markovCounts[key] = {}
@@ -62,16 +62,13 @@ def trainVertical():
         for x in range(0, maxX):
             west = " "
             southwest = " "
-            south = " "
 
             if x > 0:
                 west = room[y][x - 1]
-            if y < maxY:
-                south = room[y + 1][x - 1]
             if x > 0 and y < maxY:
                 southwest = room[y + 1][x]
 
-            key = west + southwest + south
+            key = west + southwest
 
             if key in markovProbabilities.keys():
                 randomSample = random.uniform(0, 1)
