@@ -34,7 +34,7 @@ print(markovCounts)
 print(markovProbabilities)
 
 result = []
-for i in range(20):
+for i in range(10):
 	sequence = ""
 	randomFirst = random.uniform(0,1)
 	if randomFirst >= 0.5:
@@ -42,7 +42,7 @@ for i in range(20):
 	else:
 		firstRoom = "H"
 	sequence += firstRoom
-	for j in range(15):
+	for j in range(12):
 		randomSample = random.uniform(0,1)
 		if randomSample <= min(markovProbabilities[firstRoom].values()):
 			thisRoom = "H" if firstRoom == "V" else "V"
@@ -50,6 +50,8 @@ for i in range(20):
 			thisRoom = firstRoom
 		sequence += thisRoom
 		firstRoom = thisRoom
+	if "HVH" in sequence:
+		continue
 	result.append(sequence)
 
 f = open("generated levels/layout.txt", "w")
