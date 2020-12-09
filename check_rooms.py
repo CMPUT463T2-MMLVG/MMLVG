@@ -10,9 +10,9 @@ def check_HH(roomH, roomPrev):
         leftTiles += line[0]
         rightTiles += line[-1]
     leftEmpty = [pos for pos, char in enumerate(
-        leftTiles) if pos < 13 and char == '-' or char == '|']
+        leftTiles) if pos < 13 and char == '-' or char == '|' or char == 't']
     rightEmpty = [pos for pos, char in enumerate(
-        rightTiles) if pos < 13 and char == '-' or char == '|']
+        rightTiles) if pos < 13 and char == '-' or char == '|' or char == 't']
     if not leftEmpty or not rightEmpty:
         return False
     #for pos in leftEmpty:
@@ -45,9 +45,9 @@ def check_VV(roomV, roomPrev, direction):
     topTiles = roomV[0]
     bottomTiles = roomV[-1]
     topEmpty = [pos for pos, char in enumerate(
-        topTiles) if char == '-' or char == '|']
+        topTiles) if char == '-' or char == '|' or char == 't']
     bottomEmpty = [pos for pos, char in enumerate(
-        bottomTiles) if char == '-' or char == '|']
+        bottomTiles) if char == '-' or char == '|' or char == 't']
     if not bottomEmpty or not topEmpty:
         return False
     #for pos in topEmpty:
@@ -60,7 +60,7 @@ def check_VV(roomV, roomPrev, direction):
     if not direction:
         prevTiles = roomPrev[-1]
         prevEmpty = [pos for pos, char in enumerate(
-            prevTiles) if char == '-' or char == '|']
+            prevTiles) if char == '-' or char == '|' or char == 't']
         # print(topEmpty, prevEmpty)
         if set(topEmpty).isdisjoint(prevEmpty):
             return False
@@ -75,7 +75,7 @@ def check_VV(roomV, roomPrev, direction):
     else:
         prevTiles = roomPrev[0]
         prevEmpty = [pos for pos, char in enumerate(
-            prevTiles) if char == '-' or char == '|']
+            prevTiles) if char == '-' or char == '|' or char == 't']
         # print(bottomEmpty, prevEmpty)
         if set(bottomEmpty).isdisjoint(prevEmpty):
             return False
@@ -98,16 +98,16 @@ def check_HV(roomV, roomPrev, direction):
     for line in roomV:
         leftTiles += line[0]
     leftEmpty = [pos for pos, char in enumerate(
-        leftTiles) if pos < 13 and char == '-' or char == '|']
+        leftTiles) if pos < 13 and char == '-' or char == '|' or char == 't']
     marginTiles = " "
     if not direction:
         marginTiles = roomV[-1]
         marginEmpty = [pos for pos, char in enumerate(
-            marginTiles) if char == '-' or char == '|']
+            marginTiles) if char == '-' or char == '|' or char == 't']
     else:
         marginTiles = roomV[0]
         marginEmpty = [pos for pos, char in enumerate(
-            marginTiles) if char == '-' or char == '|']
+            marginTiles) if char == '-' or char == '|' or char == 't']
     if not leftEmpty or not marginEmpty:
         return False
     #for pos in leftEmpty:
@@ -123,7 +123,7 @@ def check_HV(roomV, roomPrev, direction):
     for line in roomPrev:
         prevTiles += line[-1]
     prevEmpty = [pos for pos, char in enumerate(
-        prevTiles) if pos < 13 and char == '-' or char == '|']
+        prevTiles) if pos < 13 and char == '-' or char == '|' or char == 't']
     # print(leftEmpty, prevEmpty)
     if set(leftEmpty).isdisjoint(prevEmpty):
         return False
@@ -146,24 +146,24 @@ def check_VH(roomV, roomPrev, direction):
     for line in roomV:
         rightTiles += line[-1]
     rightEmpty = [pos for pos, char in enumerate(
-        rightTiles) if pos < 13 and char == '-' or char == '|']
+        rightTiles) if pos < 13 and char == '-' or char == '|' or char == 't']
     marginTiles = " "
     prevTiles = " "
     if not direction:
         # roomV ceiling line
         marginTiles = roomV[0]
         marginEmpty = [pos for pos, char in enumerate(
-            marginTiles) if char == '-' or char == '|']
+            marginTiles) if char == '-' or char == '|' or char == 't']
         prevTiles = roomPrev[-1]
         prevEmpty = [pos for pos, char in enumerate(
-            prevTiles) if char == '-' or char == '|']
+            prevTiles) if char == '-' or char == '|' or char == 't']
     else:
         marginTiles = roomV[-1]
         marginEmpty = [pos for pos, char in enumerate(
-            marginTiles) if char == '-' or char == '|']
+            marginTiles) if char == '-' or char == '|' or char == 't']
         prevTiles = roomPrev[0]
         prevEmpty = [pos for pos, char in enumerate(
-            prevTiles) if char == '-' or char == '|']
+            prevTiles) if char == '-' or char == '|' or char == 't']
     if not rightEmpty or not marginEmpty:
         return False
     #for pos in marginEmpty:
