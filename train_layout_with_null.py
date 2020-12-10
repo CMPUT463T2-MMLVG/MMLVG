@@ -60,12 +60,14 @@ for key in markovCounts.keys():
 
 
 '''
-Generate 4X20 map layout
+Generate 5X5 map layout
 '''
-maxY = 5
-maxX = 6
+maxY = 4
+maxX = 5
 
-for i in range(20):
+# num = usable level'snum
+num = 0
+for i in range(50):
     for y in range(maxY, -1, -1):
         level[y] =""
         for x in range(0, maxX):
@@ -94,12 +96,20 @@ for i in range(20):
             else:
                 level[y] +="-"
 
-    f = open("./MegaMan_Processed_Levels/Level_with_null/generated/generated.txt", "a")
-    for row in level:
-        f.write(str(level[row])+'\n')
-    f.write('\n')
-    f.close()
 
-    print('----------')
+    # print('----------')
+    count =0
     for row in level:
-        print(level[row])
+        for room in level[row]:
+            if room == 'H' or room == 'V':
+                count += 1
+    if count == 12:
+        num+=1
+        f = open("./MegaMan_Processed_Levels/level_structure_method1/"+str(num)+".txt", "w")
+        for row in level:
+            f.write(str(level[row])+'\n')
+        # f.write(level.values())
+        # f.write('\n')
+        f.close()
+        # for row in level:
+        #     print(level[row])

@@ -10,7 +10,7 @@ for levelFile in glob.glob("./MegaMan_Processed_Levels/1-*/path.txt"):
 		sequence = fp.readline()
 		sequenceText = "".join(c for c in sequence if c.isalpha())
 		levels.append(sequenceText)
-# print(levels)
+print(levels)
 
 for level in levels:
 	sequence = list(level)
@@ -30,8 +30,8 @@ for key in markovCounts.keys():
 		sumVal+=markovCounts[key][key2]
 	for key2 in markovCounts[key].keys():
 		markovProbabilities[key][key2] =markovCounts[key][key2]/sumVal
-# print(markovCounts)
-# print(markovProbabilities)
+print(markovCounts)
+print(markovProbabilities)
 
 result = []
 for i in range(20):
@@ -51,4 +51,9 @@ for i in range(20):
 		sequence += thisRoom
 		firstRoom = thisRoom
 	result.append(sequence)
+
+f = open("generated levels/layout.txt", "w")
+for i in range(len(result)):
+	f.write(result[i]+"\n")
+
 print(result)

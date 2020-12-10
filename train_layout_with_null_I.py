@@ -100,9 +100,10 @@ for i in range(20):
             else:
                 level[y] +="-"
 
-    f = open("./MegaMan_Processed_Levels/Level_with_null/generated/generated-I.txt", "a")
-    for row in level:
-        f.write(str(level[row])+'\n')
+    f = open("./MegaMan_Processed_Levels/Level_with_null/generated/generated-I.txt", "w")
+    # for row in level:
+    #     f.write(str(level[row])+'\n')
+    f.write(level)
     f.write('\n')
     f.close()
 
